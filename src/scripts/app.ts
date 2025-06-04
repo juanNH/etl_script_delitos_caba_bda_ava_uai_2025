@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
-import { AppDataSource } from './config/database';
-import { ExcelRepository } from './infrastructure/repositories/ExcelRepository';
-import { ProcessExcelFile } from './core/use-cases/ProcessExcelFile';
-import { CSVReader } from './utils/ExcelUtilts';
+import { AppDataSource } from '../config/database';
+import { ExcelRepository } from '../infrastructure/repositories/ExcelRepository';
+import { ProcessExcelFile } from '../core/use-cases/ProcessExcelFile';
+import { CSVReader } from '../utils/ExcelUtilts';
 
 // Cargar variables de entorno
 dotenv.config();

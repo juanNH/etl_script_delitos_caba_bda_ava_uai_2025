@@ -39,8 +39,8 @@ export class Hecho {
   longitud: string;
 
   @Column()
-  uso_arma: string;
+  uso_arma: boolean;
 
   @Column()
-  uso_moto: string;
+  uso_moto: boolean;
 }

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node srcs/scripts/app.ts",
-    "create:db": "ts-node srcs/scripts/create-structure.ts",
+    "start": "ts-node src/scripts/app.ts",
+    "create:db": "ts-node src/scripts/create-structure.ts",
+    "load:db": "ts-node src/scripts/load-entities.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,7 +18,8 @@
     "dotenv": "^16.5.0",
     "fs": "^0.0.1-security",
     "mssql": "^11.0.1",
-    "typeorm": "^0.3.24"
+    "typeorm": "^0.3.24",
+    "reflect-metadata": "0.2.2"
   },
   "devDependencies": {
     "@types/node": "^22.15.29",

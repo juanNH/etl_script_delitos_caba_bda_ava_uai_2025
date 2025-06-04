@@ -16,7 +16,8 @@
       "declaration": true,                        // Genera archivos .d.ts para declarar tipos
       "declarationMap": true,                     // Genera mapas de declaración para depuración
       "sourceMap": true,                           // Genera mapas de origen para depuración
-      "experimentalDecorators": true
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
     },
     "include": [
       "src/**/*.ts"  // Incluye todos los archivos .ts dentro de la carpeta src
