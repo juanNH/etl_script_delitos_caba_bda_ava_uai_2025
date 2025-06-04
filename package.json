@@ -1,0 +1,28 @@
+{
+  "name": "etl_script_delitos_caba_bda_ava_uai_2025",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node srcs/scripts/app.ts",
+    "create:db": "ts-node srcs/scripts/create-structure.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parse": "^5.6.0",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^16.5.0",
+    "fs": "^0.0.1-security",
+    "mssql": "^11.0.1",
+    "typeorm": "^0.3.24"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "@types/xlsx": "^0.0.35",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

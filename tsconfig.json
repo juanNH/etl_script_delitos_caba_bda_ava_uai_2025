@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "target": "ES6",                            // Compilamos a ES6 para utilizar características modernas de JavaScript
+      "module": "commonjs",                       // Usamos el sistema de módulos CommonJS (requerido para Node.js)
+      "moduleResolution": "node",                 // Usamos la resolución de módulos de Node.js
+      "strict": true,                             // Activamos todas las verificaciones estrictas de tipo
+      "esModuleInterop": true,                    // Permite importar módulos ES6 en un entorno CommonJS
+      "skipLibCheck": true,                       // Evita la verificación de las definiciones de tipo de las dependencias
+      "forceConsistentCasingInFileNames": true,   // Asegura que los nombres de archivo sean consistentes entre mayúsculas y minúsculas
+      "outDir": "./dist",                         // Carpeta donde se generará el código JavaScript compilado
+      "rootDir": "./src",                         // Carpeta donde se encuentran los archivos fuente de TypeScript
+      "resolveJsonModule": true,                  // Permite importar archivos JSON como módulos
+      "strictPropertyInitialization": false,      // Desactiva la verificación de inicialización de propiedades
+      "skipDefaultLibCheck": true,                // Omite la comprobación de las bibliotecas predeterminadas
+      "lib": ["ES6", "ES2020"],                   // Utilizamos librerías modernas de ES6 y ES2020
+      "declaration": true,                        // Genera archivos .d.ts para declarar tipos
+      "declarationMap": true,                     // Genera mapas de declaración para depuración
+      "sourceMap": true,                           // Genera mapas de origen para depuración
+      "experimentalDecorators": true
+    },
+    "include": [
+      "src/**/*.ts"  // Incluye todos los archivos .ts dentro de la carpeta src
+    ],
+    "exclude": [
+      "node_modules",  // Excluye la carpeta node_modules para no procesarla
+      "dist"           // Excluye la carpeta dist donde se genera el código compilado
+    ]
+  }
+  
