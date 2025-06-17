@@ -1,11 +1,11 @@
+import { TipoRepository } from '../../infrastructure/repositories/TipoRepository';
 import { Tipo } from '../entities/Tipo.entity';
-import { ITipoRepository } from '../interfaces/ITipoRepository';
 
 export class LoadTipoUseCase {
-    private tipoRepository: ITipoRepository;
+    private tipoRepository: TipoRepository;
     private tiposName: string[] = ['Vialidad', 'Lesiones', 'Amenazas', 'Hurto', 'Robo', 'Homicidios'];
 
-    constructor(tipoRepository: ITipoRepository) {
+    constructor(tipoRepository: TipoRepository) {
         this.tipoRepository = tipoRepository;
     }
 

@@ -62,7 +62,7 @@ export class LoadSubTipoUseCase {
             case 'Homicidio Doloso':
                 return tipos.find(tipo => tipo.nombre === 'Homicidios') as Tipo
             default:
-                return new Tipo();
+                throw new Error(`No se encontró tipo para el subtimo "${name}"`);
         }
     }
 }
