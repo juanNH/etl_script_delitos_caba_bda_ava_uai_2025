@@ -24,11 +24,11 @@ async function createStructure() {
         const loadBarrioUseCase = new LoadBarrioUseCase(barrioRepository, comunaRepository);
 
         console.log('Ejecutando casos de uso...');
-        //await loadTipoUseCase.execute();
+        await loadTipoUseCase.execute();
         console.log('Carga de tipos exitosa!');
-        //await loadSubTipoUseCase.execute()
+        await loadSubTipoUseCase.execute()
         console.log('Carga de sub tipos exitosa!');
-        //await loadComunaUseCase.execute()
+        await loadComunaUseCase.execute()
         console.log('Carga de comunas exitosa!');
         await loadBarrioUseCase.execute()
         console.log('Carga de barrio exitosa!');

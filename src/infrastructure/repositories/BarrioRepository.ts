@@ -11,4 +11,8 @@ export class BarrioRepository implements BarrioRepository {
         const comunaRepo = AppDataSource.getRepository(Barrio);
         await comunaRepo.save(data);
     }
+    async getAll(): Promise<Barrio[]> {
+        const tipoRepo = AppDataSource.getRepository(Barrio);
+        return await tipoRepo.find();
+    }
 }

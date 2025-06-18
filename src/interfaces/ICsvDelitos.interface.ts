@@ -1,5 +1,5 @@
 export interface ICsvDelitos {
-    'id-mapa': string,
+    id_mapa: string,
     anio: string,
     mes: string,
     dia: string,

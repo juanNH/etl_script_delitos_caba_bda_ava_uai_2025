@@ -20,7 +20,13 @@ export class CSVReader {
       const results: ICsvDelitos[] = [];
 
       fs.createReadStream(fullPath)
-        .pipe(csv({ separator: ';' }))
+        .pipe(csv({
+          separator: ';',
+          mapHeaders: ({ header }) =>
+            header
+              .trim()
+              .replace(/-/g, '_')
+        }))
         .on('data', (row: ICsvDelitos) => {
           results.push(row);
         })

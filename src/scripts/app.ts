@@ -3,6 +3,8 @@ import { AppDataSource } from '../config/database';
 import { ExcelRepository } from '../infrastructure/repositories/ExcelRepository';
 import { ProcessExcelFile } from '../core/use-cases/ProcessExcelFile';
 import { CSVReader } from '../utils/ExcelUtilts';
+import { ICsvDelitos } from '../interfaces/ICsvDelitos.interface';
+import { LoadHechoUseCase } from '../core/use-cases/LoadHecho.use-case';
 
 // Cargar variables de entorno
 dotenv.config();
@@ -15,7 +17,7 @@ async function main() {
   // Cargar el archivo Excel y procesarlo
   const filePaths = ['src/folders/delitos_2023.csv'];  // Ajusta el path a tu archivo Excel
   for (const path of filePaths) {
-    const rows = await CSVReader.readCSVRows(path);
+    const rows: ICsvDelitos[] = await CSVReader.readCSVRows(path);
     // Procesar los datos y guardarlos en la base de datos
     const tiposUnicos = Array.from(new Set(rows.map(row => row.tipo)));
     const barriosUnicos = Array.from(new Set(rows.map(row => row.barrio)));
@@ -29,12 +31,12 @@ async function main() {
     console.log('Valores únicos de "uso_arma":', usoArmaUnicos);
     console.log('Valores únicos de "uso_moto":', usoMotoUnicos);
     console.log('Valores únicos de "comuna":', comunaUnicos);
+    await AppDataSource.initialize();
 
-    //console.log(rows)
-    /* const excelRepository = new ExcelRepository();
-    const processExcelFile = new ProcessExcelFile(excelRepository);
-    await processExcelFile.execute(rows); */
-  
+    const loadHechoUseCase = new LoadHechoUseCase();
+    await loadHechoUseCase.execute(rows);
+    await AppDataSource.destroy();
+
     console.log('Datos insertados correctamente en la base de datos');
   }
   process.exit(0);

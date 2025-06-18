@@ -12,4 +12,9 @@ export class SubTipoRepository implements ISubTipoRepository {
         const subTipoRepo = AppDataSource.getRepository(Subtipo);
         await subTipoRepo.save(data);
     }
+
+    async getAll(): Promise<Subtipo[]> {
+        const subTipoRepo = AppDataSource.getRepository(Subtipo);
+        return await subTipoRepo.find();
+    }
 }

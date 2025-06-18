@@ -18,10 +18,11 @@
     "dotenv": "^16.5.0",
     "fs": "^0.0.1-security",
     "mssql": "^11.0.1",
-    "typeorm": "^0.3.24",
-    "reflect-metadata": "0.2.2"
+    "reflect-metadata": "0.2.2",
+    "typeorm": "^0.3.24"
   },
   "devDependencies": {
+    "@types/mssql": "^9.1.7",
     "@types/node": "^22.15.29",
     "@types/xlsx": "^0.0.35",
     "ts-node": "^10.9.2",

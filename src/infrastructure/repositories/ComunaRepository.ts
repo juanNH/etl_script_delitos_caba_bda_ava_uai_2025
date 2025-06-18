@@ -13,7 +13,7 @@ export class ComunaRepository implements IComunaRepository {
         await comunaRepo.save(data);
     }
     async getAll(): Promise<Comuna[]> {
-        const tipoRepo = AppDataSource.getRepository(Comuna);
-        return await tipoRepo.find();
+        const comunaRepo = AppDataSource.getRepository(Comuna);
+        return await comunaRepo.find();
     }
 }

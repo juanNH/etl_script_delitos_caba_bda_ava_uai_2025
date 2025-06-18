@@ -11,17 +11,8 @@ export class Hecho {
   @Column()
   id_mapa: string;
 
-  @Column()
-  anio: string;
-
-  @Column()
-  mes: string;
-
-  @Column()
-  dia: string;
-
-  @Column()
-  fecha: string;
+  @Column({ type: "date" })
+  fecha: Date;
 
   @Column()
   franja: string;
