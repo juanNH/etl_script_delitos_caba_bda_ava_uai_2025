@@ -1,6 +1,6 @@
 {
   "name": "etl_script_delitos_caba_bda_ava_uai_2025",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
