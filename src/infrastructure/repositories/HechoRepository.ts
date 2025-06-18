@@ -25,7 +25,7 @@ export class HechoRepository implements IHechoRepository {
 
         // 1) Levantar la tabla existente
         const table = new sql.Table("hecho");
-        table.create = false; // <— muy importante
+        table.create = false;
 
         table.columns.add("id_mapa", sql.NVarChar(255), { nullable: false });
         table.columns.add("fecha", sql.Date, { nullable: false });
@@ -40,15 +40,15 @@ export class HechoRepository implements IHechoRepository {
 
         data.forEach(d =>
             table.rows.add(
-                d.id_mapa!,         // string
-                d.fecha,              // Date
-                d.franja!,          // string
-                d.latitud!,         // string
-                d.longitud!,        // string
-                d.uso_arma ? 1 : 0, // bit
-                d.uso_moto ? 1 : 0, // bit
-                d.subtipo?.id,          // int | null
-                d.barrio?.id            // int | null
+                d.id_mapa!,
+                d.fecha,
+                d.franja!,
+                d.latitud!,
+                d.longitud!,
+                d.uso_arma ? 1 : 0,
+                d.uso_moto ? 1 : 0,
+                d.subtipo?.id,
+                d.barrio?.id
             )
         );
 

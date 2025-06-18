@@ -15,7 +15,7 @@ async function main() {
   console.log('Conexión a la base de datos establecida');
 
   // Cargar el archivo Excel y procesarlo
-  const filePaths = ['src/folders/delitos_2023.csv'];  // Ajusta el path a tu archivo Excel
+  const filePaths = ['src/folders/delitos_2020.csv', 'src/folders/delitos_2021.csv', 'src/folders/delitos_2022.csv'];  // Ajusta el path a tu archivo Excel
   for (const path of filePaths) {
     const rows: ICsvDelitos[] = await CSVReader.readCSVRows(path);
     // Procesar los datos y guardarlos en la base de datos
