@@ -6,6 +6,8 @@ import { Tipo } from "../core/entities/Tipo.entity";
 import { Subtipo } from "../core/entities/Subtipo.entity";
 import { Hecho } from "../core/entities/Hecho.entity";
 import dotenv from "dotenv";
+import { Franja } from "../core/entities/Franja.entity";
+import { Tiempo } from "../core/entities/Tiempo.entity";
 dotenv.config();
 export const AppDataSource = new DataSource({
   type: "mssql",
@@ -15,7 +17,7 @@ export const AppDataSource = new DataSource({
   port: Number(process.env.DB_PORT) || 1433,                 // El puerto donde SQLEXPRESS escucha (ya configuraste esto)
   username: process.env.DB_USERNAME || "etluser",       // El login SQL que creaste
   password: process.env.DB_USERNAME || "etluser",// Su contraseña
-  database: process.env.DB_DATABASE || "caba_delitos" ,   // La base que creaste
+  database: process.env.DB_DATABASE || "caba_delitos",   // La base que creaste
 
   synchronize: true,          // Solo en desarrollo: TypeORM crea/ajusta tablas
   logging: false,             // Desactivá logs SQL de TypeORM
@@ -29,5 +31,5 @@ export const AppDataSource = new DataSource({
 
   // Ya NO definimos "authentication" (que era para NTLM), porque con username/password
   // TypeORM entiende que usamos SQL Authentication.
-  entities: [Comuna, Barrio, Tipo, Subtipo, Hecho]
+  entities: [Comuna, Barrio, Tipo, Subtipo, Franja, Tiempo, Hecho]
 });

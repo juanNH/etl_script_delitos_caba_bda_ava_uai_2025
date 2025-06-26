@@ -8,6 +8,10 @@ import { LoadComunaUseCase } from "../core/use-cases/LoadComuna.use-case";
 import { ComunaRepository } from "../infrastructure/repositories/ComunaRepository";
 import { LoadBarrioUseCase } from "../core/use-cases/LoadBarrio.use-case";
 import { BarrioRepository } from "../infrastructure/repositories/BarrioRepository";
+import { LoadFranjaUseCase } from "../core/use-cases/LoadFranja.use-case";
+import { FranjaRepository } from "../infrastructure/repositories/FranjaRepository";
+import { LoadTiempoUseCase } from "../core/use-cases/LoadTiempo.use-case";
+import { TiempoRepository } from "../infrastructure/repositories/TiempoRepository";
 
 async function createStructure() {
     try {
@@ -18,11 +22,15 @@ async function createStructure() {
         const subTipoRepository = new SubTipoRepository();
         const comunaRepository = new ComunaRepository();
         const barrioRepository = new BarrioRepository();
+        const franjaRepository = new FranjaRepository();
+        const tiempoRepository = new TiempoRepository();
+
         const loadTipoUseCase = new LoadTipoUseCase(tipoRepository);
         const loadSubTipoUseCase = new LoadSubTipoUseCase(tipoRepository, subTipoRepository);
         const loadComunaUseCase = new LoadComunaUseCase(comunaRepository);
         const loadBarrioUseCase = new LoadBarrioUseCase(barrioRepository, comunaRepository);
-
+        const loadFranjaUseCase = new LoadFranjaUseCase(franjaRepository)
+        const loadTiempoUseCase = new LoadTiempoUseCase(tiempoRepository)
         console.log('Ejecutando casos de uso...');
         await loadTipoUseCase.execute();
         console.log('Carga de tipos exitosa!');
@@ -32,6 +40,12 @@ async function createStructure() {
         console.log('Carga de comunas exitosa!');
         await loadBarrioUseCase.execute()
         console.log('Carga de barrio exitosa!');
+        await loadFranjaUseCase.execute()
+        console.log('Carga de franja exitosa!');
+
+        await loadTiempoUseCase.execute()
+        console.log('Carga de tiempo exitosa!');
+
         console.log("✅ Estructura cargada correctamente.");
         await AppDataSource.destroy();
         console.log("Conexión cerrada correctamente.");

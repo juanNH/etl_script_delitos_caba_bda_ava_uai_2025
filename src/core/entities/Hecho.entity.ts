@@ -2,6 +2,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { Subtipo } from "./Subtipo.entity";
 import { Barrio } from "./Barrio.entity";
+import { Tiempo } from "./Tiempo.entity";
+import { Franja } from "./Franja.entity";
 
 @Entity()
 export class Hecho {
@@ -11,17 +13,17 @@ export class Hecho {
   @Column()
   id_mapa: string;
 
-  @Column({ type: "date" })
-  fecha: Date;
-
-  @Column()
-  franja: string;
-
   @ManyToOne(() => Subtipo)
   subtipo: Subtipo;
 
   @ManyToOne(() => Barrio)
   barrio: Barrio;
+
+  @ManyToOne(() => Tiempo)
+  tiempo: Tiempo;
+
+  @ManyToOne(() => Franja)
+  franja: Franja;
 
   @Column()
   latitud: string;

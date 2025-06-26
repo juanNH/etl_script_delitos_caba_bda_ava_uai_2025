@@ -22,36 +22,36 @@ export class HechoRepository implements IHechoRepository {
 
     async saveBulk(data: Partial<Hecho>[]): Promise<void> {
         if (!this.pool) throw new Error("Pool no inicializado");
-
         // 1) Levantar la tabla existente
         const table = new sql.Table("hecho");
         table.create = false;
 
         table.columns.add("id_mapa", sql.NVarChar(255), { nullable: false });
-        table.columns.add("fecha", sql.Date, { nullable: false });
-        table.columns.add("franja", sql.NVarChar(255), { nullable: false });
         table.columns.add("latitud", sql.NVarChar(255), { nullable: false });
         table.columns.add("longitud", sql.NVarChar(255), { nullable: false });
         table.columns.add("uso_arma", sql.Bit, { nullable: false });
         table.columns.add("uso_moto", sql.Bit, { nullable: false });
+
         table.columns.add("subtipoId", sql.Int, { nullable: true });
         table.columns.add("barrioId", sql.Int, { nullable: true });
+
+        table.columns.add("tiempoFechaId", sql.Int, { nullable: true });
+        table.columns.add("franjaId", sql.Int, { nullable: true });
 
 
         data.forEach(d =>
             table.rows.add(
-                d.id_mapa!,
-                d.fecha,
-                d.franja!,
-                d.latitud!,
-                d.longitud!,
+                d.id_mapa,
+                d.latitud,
+                d.longitud,
                 d.uso_arma ? 1 : 0,
                 d.uso_moto ? 1 : 0,
                 d.subtipo?.id,
-                d.barrio?.id
+                d.barrio?.id,
+                d.tiempo?.fechaId,
+                d.franja?.id
             )
         );
-
         // Bulk insert
         await this.pool.request().bulk(table);
     }

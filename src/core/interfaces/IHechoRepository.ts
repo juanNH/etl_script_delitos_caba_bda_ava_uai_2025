@@ -4,4 +4,8 @@ export interface IHechoRepository {
   save(data: Hecho): Promise<void>;
 
   saveMany(data: Hecho[]): Promise<void>;
+
+  saveBulk(data: Hecho[]): Promise<void>;
+
+  init(): Promise<void>
 }
