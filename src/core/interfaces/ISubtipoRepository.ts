@@ -6,5 +6,4 @@ export interface ISubTipoRepository {
   saveMany(data: Subtipo[]): Promise<void>;
 
   getAll(): Promise<Subtipo[]>;
-  
 }

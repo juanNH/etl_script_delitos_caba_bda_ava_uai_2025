@@ -1,15 +1,22 @@
 import { BarrioRepository } from '../../infrastructure/repositories/BarrioRepository';
+import { FranjaRepository } from '../../infrastructure/repositories/FranjaRepository';
 import { HechoRepository } from '../../infrastructure/repositories/HechoRepository';
 import { SubTipoRepository } from '../../infrastructure/repositories/SubTipoRepository';
+import { TiempoRepository } from '../../infrastructure/repositories/TiempoRepository';
 import { ICsvDelitos } from '../../interfaces/ICsvDelitos.interface';
 import { Barrio } from '../entities/Barrio.entity';
+import { Franja } from '../entities/Franja.entity';
 import { Hecho } from '../entities/Hecho.entity';
 import { Subtipo } from '../entities/Subtipo.entity';
+import { Tiempo } from '../entities/Tiempo.entity';
 
 export class LoadHechoUseCase {
     private hechoRepository: HechoRepository = new HechoRepository();
     private subTipoRepository: SubTipoRepository = new SubTipoRepository();
     private barrioRepository: BarrioRepository = new BarrioRepository();
+    private franjaRepository: FranjaRepository = new FranjaRepository();
+    private tiempoRepository: TiempoRepository = new TiempoRepository();
+
 
     constructor() {
     }
@@ -17,6 +24,8 @@ export class LoadHechoUseCase {
     async execute(delitos: ICsvDelitos[]): Promise<void> {
         const subtipos = await this.subTipoRepository.getAll();
         const barrios = await this.barrioRepository.getAll();
+        const franjas = await this.franjaRepository.getAll();
+        const tiempos = await this.tiempoRepository.getAll();
         const hechosSinManejar: ICsvDelitos[] = [];
         const hechos: Hecho[] = []
         delitos.forEach(delito => {
@@ -25,17 +34,19 @@ export class LoadHechoUseCase {
             const barrio = this.handleBarrio(barrios, delito.barrio);
             const subTipo = this.handleSubTipo(subtipos, delito.subtipo);
             const fecha = this.handleFecha(delito.fecha);
-            if (uso_arma !== undefined && uso_moto !== undefined && barrio && subTipo && fecha) {
+            const franja = this.handleFranja(franjas, delito.franja);
+            const tiempo = this.handleTiempo(tiempos, delito.fecha);
+            if (uso_arma !== undefined && uso_moto !== undefined && barrio && subTipo && fecha && franja && tiempo) {
                 const hecho = new Hecho()
                 hecho.id_mapa = delito.id_mapa;
                 hecho.uso_arma = uso_arma;
                 hecho.uso_moto = uso_moto;
                 hecho.latitud = delito.latitud;
                 hecho.longitud = delito.longitud;
-                hecho.franja = delito.franja;
+                hecho.franja = franja;
                 hecho.barrio = barrio;
                 hecho.subtipo = subTipo;
-                hecho.fecha = fecha;
+                hecho.tiempo = tiempo;
                 hechos.push(hecho);
             } else {
                 hechosSinManejar.push(delito);
@@ -109,5 +120,16 @@ export class LoadHechoUseCase {
         }
 
         return fecha;
+    }
+    private handleFranja(franjas: Franja[], franjaString: string): Franja | undefined {
+        const h = String(franjaString).padStart(2, '0');
+        const franja = franjas.find(franjaItem => franjaItem.franja.startsWith(`${h}hs`));
+        return franja;
+    }
+    private handleTiempo(tiempos: Tiempo[], tiempoString: string): Tiempo | undefined {
+        const [yyyy, mm, dd] = tiempoString.split("-");
+        const fechaId = Number(`${yyyy}${mm}${dd}`);
+        const tiempoO = tiempos.find(tiempo => tiempo.fechaId === fechaId);
+        return tiempoO
     }
 }
