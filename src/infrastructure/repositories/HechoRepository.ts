@@ -53,7 +53,7 @@ export class HechoRepository implements IHechoRepository {
             )
         );
         // Bulk insert
-        await this.pool.request().bulk(table);
+         await this.pool.request().bulk(table);
     }
 
     async close() {

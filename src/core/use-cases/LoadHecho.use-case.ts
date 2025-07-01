@@ -129,6 +129,7 @@ export class LoadHechoUseCase {
     private handleTiempo(tiempos: Tiempo[], tiempoString: string): Tiempo | undefined {
         const [yyyy, mm, dd] = tiempoString.split("-");
         const fechaId = Number(`${yyyy}${mm}${dd}`);
-        return tiempos.find(tiempo => tiempo.fechaId = fechaId);
+        const tiempoO = tiempos.find(tiempo => tiempo.fechaId === fechaId);
+        return tiempoO
     }
 }
